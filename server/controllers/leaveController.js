@@ -61,7 +61,7 @@ export const getLeaves = async (req, res) => {
     if (isAdmin) {
       const status = req.query.status;
       const where = status ? { status } : {};
-      const leaves = (await LeaveApplication.find(where).populate("employeeId")).sort({ createdAt: -1 });
+      const leaves = await LeaveApplication.find(where).populate("employeeId").sort({ createdAt: -1 });
       const data = leaves.map((l) => {
         const obj = l.toObject();
         return {
@@ -91,7 +91,7 @@ export const getLeaves = async (req, res) => {
 }
 
 // Update leave status
-// PATCH /api/leaves/:id
+// PATCH /api/leave/:id
 export const updateLeaveStatus = async (req, res) => {
   try {
     const { status } = req.body;

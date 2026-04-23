@@ -71,7 +71,7 @@ export const getPayslipById = async (req, res) => {
       id: payslip._id.toString(),
       employee: payslip.employeeId,
     }
-    return res.json({result})
+    return res.json({data: result})
   } catch (error) {
     return res.status(500).json({ error: "Failed" });
   }
